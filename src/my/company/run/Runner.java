@@ -19,14 +19,15 @@ public class Runner
 	public static void main(String[] args)
 	{
 		Order order = new SDROrder();
-		SDROrderEntry entry = new SDROrderEntry();
-		entry.setReason("reason1");
+		AbstractOrderEntry entry = new SDROrderEntry();
+		entry.setOrder(order);
+		((SDROrderEntry) entry).setReason("reason1");
 		List<AbstractOrderEntry> entries = new ArrayList<>();
 		entries.add(entry);
 		order.setEntries(entries);
 
 		OrderValidation orderValidation = new OrderValidation();
-		orderValidation.validate(order);
+		orderValidation.validate(entry);
 
 	}
 }
